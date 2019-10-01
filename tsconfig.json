@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["es2016", "dom"],
+    "sourceMap": true, // 资源地图 js报错会提示相应的ts哪个位置
+    "strict": true,
+    "removeComments": true, // 移除注释
+    "esModuleInterop": true, // es6模块化代码与非es6模块化代码交互
+    "moduleResolution": "node", // 模块解析策略
+    "isolatedModules": true // 每个文件都要是一个模块
+  },
+  "include": ["./src"] // 只编译src目录下的ts文件，默认所有ts文件
+}

@@ -11,6 +11,9 @@ export class Square {
 
     set viewer(v) {
         this._viewer = v;
+        if (v) {
+            v.show();
+        }
     }
 
     get coordinate() {

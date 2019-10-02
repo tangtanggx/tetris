@@ -1,20 +1,32 @@
 import { Square } from "./core/Square";
-import { IViewer } from "./core/types";
+import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
+import $ from 'jquery'
 
-class SquareConsoleViewer implements IViewer {
-    constructor(private _square: Square) { }
+const sq = new Square({ x: 0, y: 0 }, 'red');
+sq.viewer = new SquarePageViewer(sq, $('#root'));
 
-    show(): void {
-        console.log(this._square.coordinate, this._square.color)
+$('#btnMove').click(function () {
+    sq.coordinate = {
+        x: sq.coordinate.x,
+        y: sq.coordinate.y + 1
     }
 
-    remove(): void {
+})
 
+$('#btnRemove').click(function () {
+    if (sq.viewer) {
+        sq.viewer.remove()
     }
-}
+})
 
-const sq = new Square({ x: 0, y: 0 }, "#f00");
+$('#btnShow').click(function () {
 
-sq.viewer = new SquareConsoleViewer(sq);
-sq.viewer.show();
+    sq.viewer = new SquarePageViewer(sq, $('#root'));
 
+})
+// setInterval(() => {
+//     sq.coordinate = {
+//         x: sq.coordinate.x,
+//         y: sq.coordinate.y + 1
+//     }
+// }, 1000)

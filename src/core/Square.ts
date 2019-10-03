@@ -4,6 +4,8 @@ import { Coordinate, IViewer } from "./types";
 export class Square {
     /** 显示者 */
     private _viewer?: IViewer
+    private _coordinate: Coordinate = { x: 0, y: 0 }
+    private _color: string = "#000"
 
     get viewer() {
         return this._viewer;
@@ -33,7 +35,9 @@ export class Square {
         return this._color;
     }
 
-    constructor(private _coordinate: Coordinate, private _color: string) {
-
+    set color(v) {
+        this._color = v;
     }
+
+    constructor() { }
 }

@@ -1,32 +1,52 @@
-import { Square } from "./core/Square";
-import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
+
 import $ from 'jquery'
 
-const sq = new Square({ x: 0, y: 0 }, 'red');
-sq.viewer = new SquarePageViewer(sq, $('#root'));
+import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
+import { SquareGroup } from "./core/SquareGroup";
 
-$('#btnMove').click(function () {
-    sq.coordinate = {
-        x: sq.coordinate.x,
-        y: sq.coordinate.y + 1
+
+const sqGroup = new SquareGroup([{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: -1 }], { x: 4, y: 2 }, 'yellow')
+sqGroup.squareGroup.forEach(item => {
+    item.viewer = new SquarePageViewer(item, $('#root'));
+})
+
+
+$('#btnUp').click(function () {
+    sqGroup.centerPoint = {
+        x: sqGroup.centerPoint.x,
+        y: sqGroup.centerPoint.y - 1
     }
-
 })
 
-$('#btnRemove').click(function () {
-    if (sq.viewer) {
-        sq.viewer.remove()
+$('#btnDown').click(function () {
+    sqGroup.centerPoint = {
+        x: sqGroup.centerPoint.x,
+        y: sqGroup.centerPoint.y + 1
     }
 })
 
-$('#btnShow').click(function () {
-
-    sq.viewer = new SquarePageViewer(sq, $('#root'));
-
+$('#btnLeft').click(function () {
+    sqGroup.centerPoint = {
+        x: sqGroup.centerPoint.x - 1,
+        y: sqGroup.centerPoint.y
+    }
 })
-// setInterval(() => {
-//     sq.coordinate = {
-//         x: sq.coordinate.x,
-//         y: sq.coordinate.y + 1
+
+$('#btnRight').click(function () {
+    sqGroup.centerPoint = {
+        x: sqGroup.centerPoint.x + 1,
+        y: sqGroup.centerPoint.y
+    }
+})
+
+// $('#btnRemove').click(function () {
+//     if (sq.viewer) {
+//         sq.viewer.remove()
 //     }
-// }, 1000)
+// })
+
+// $('#btnShow').click(function () {
+
+//     sq.viewer = new SquarePageViewer(sq, $('#root'));
+
+// })

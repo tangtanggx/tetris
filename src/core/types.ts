@@ -9,3 +9,6 @@ export interface IViewer {
     show(): void
     remove(): void
 }
+
+/** 方块组合的形状 */
+export type Shape = Coordinate[]

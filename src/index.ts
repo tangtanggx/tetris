@@ -2,10 +2,10 @@
 import $ from 'jquery'
 
 import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
-import { SquareGroup } from "./core/SquareGroup";
+import { createTetris } from './core/Tetris';
 
 
-const sqGroup = new SquareGroup([{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: -1 }], { x: 4, y: 2 }, 'yellow')
+const sqGroup = createTetris({ x: 8, y: 3 });
 sqGroup.squareGroup.forEach(item => {
     item.viewer = new SquarePageViewer(item, $('#root'));
 })

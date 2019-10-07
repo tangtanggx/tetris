@@ -36,3 +36,7 @@ yarn add -D html-webpack-plugin
 
 1. 所有的属性去不私有化
 2. 使用公开的方法提供对属性的访问
+
+# 注意点
+webpack-dev-server 和 ts-loader 联用时，如果添加了一个新类型并导出，然后在其他模块导入使用，之后热更新时会报错。
+解决办法：在配置ts-loader时加上 transpileOnly: true

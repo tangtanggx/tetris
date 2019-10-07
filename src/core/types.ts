@@ -12,3 +12,10 @@ export interface IViewer {
 
 /** 方块组合的形状 */
 export type Shape = Coordinate[]
+
+/** 移动方向 */
+export enum MoveDirection {
+    Left,
+    Right,
+    Down
+}

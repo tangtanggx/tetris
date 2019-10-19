@@ -21,18 +21,22 @@ $('#btnUp').click(function () {
 })
 
 $('#btnDown').click(function () {
-    // TetrisRule.move(sqGroup, MoveDirection.Down)
-    TetrisRule.moveFast(sqGroup, MoveDirection.Down);
+    TetrisRule.move(sqGroup, MoveDirection.Down)
+    // TetrisRule.moveFast(sqGroup, MoveDirection.Down);
 })
 
 $('#btnLeft').click(function () {
-    // TetrisRule.move(sqGroup, MoveDirection.Left)
-    TetrisRule.moveFast(sqGroup, MoveDirection.Left);
+    TetrisRule.move(sqGroup, MoveDirection.Left)
+    // TetrisRule.moveFast(sqGroup, MoveDirection.Left);
 })
 
 $('#btnRight').click(function () {
-    // TetrisRule.move(sqGroup, MoveDirection.Right)
-    TetrisRule.moveFast(sqGroup, MoveDirection.Right);
+    TetrisRule.move(sqGroup, MoveDirection.Right)
+    // TetrisRule.moveFast(sqGroup, MoveDirection.Right);
+})
+
+$('#btnRotate').click(function () {
+    TetrisRule.rotate(sqGroup);
 })
 
 // $('#btnRemove').click(function () {

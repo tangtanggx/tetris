@@ -2,22 +2,77 @@ import { Coordinate } from "./types"
 import { SquareGroup } from "./SquareGroup"
 import { getRamdom } from "./util"
 
-const TShape = [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: -1 }]
+// 子类
+class TShape extends SquareGroup {
+    constructor(_centerPoint: Coordinate, _color: string) {
+        super([{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: -1 }], _centerPoint, _color);
+    }
+}
 
-const LShape = [{ x: 0, y: -2 }, { x: 0, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 0 }]
+class LShape extends SquareGroup {
+    constructor(_centerPoint: Coordinate, _color: string) {
+        super([{ x: 0, y: -2 }, { x: 0, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 0 }], _centerPoint, _color);
+    }
+}
 
-const L2Shape = [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }]
+class L2Shape extends SquareGroup {
+    constructor(_centerPoint: Coordinate, _color: string) {
+        super([{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }], _centerPoint, _color);
+    }
+}
 
-const ZShape = [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }]
 
-const Z2Shape = [{ x: -1, y: 1 }, { x: 0, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 0 }]
+class ZShape extends SquareGroup {
+    constructor(_centerPoint: Coordinate, _color: string) {
+        super([{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }], _centerPoint, _color);
+    }
 
-const LineShape = [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }]
+    rotate(){
+        super.rotate();
+        this.isClockwise = !this.isClockwise;
+    }
+}
 
-const TianShape = [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 1 }]
+class Z2Shape extends SquareGroup {
+    constructor(_centerPoint: Coordinate, _color: string) {
+        super([{ x: -1, y: 1 }, { x: 0, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 0 }], _centerPoint, _color);
+    }
 
-/** 所有组合形状集合 */
-const shapes = [TShape, LShape, L2Shape, ZShape, Z2Shape, LineShape, TianShape];
+    rotate() {
+        super.rotate();
+        this.isClockwise = !this.isClockwise;
+    }
+}
+
+class LineShape extends SquareGroup {
+    constructor(_centerPoint: Coordinate, _color: string) {
+        super([{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }], _centerPoint, _color);
+    }
+
+    rotate() {
+        super.rotate();
+        this.isClockwise = !this.isClockwise;
+    }
+}
+
+/** 田 */
+class FieldShape extends SquareGroup {
+    constructor(_centerPoint: Coordinate, _color: string) {
+        super([{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 1 }], _centerPoint, _color);
+    }
+
+    getRotateShape(): Coordinate[] {
+        return this.shape;
+    }
+
+    /** 不用旋转 */
+    rotate() { }
+}
+
+
+
+/** 所有组合形状的类集合 */
+const shapes = [TShape, LShape, L2Shape, ZShape, Z2Shape, LineShape, FieldShape];
 
 /** 所有颜色集合 */
 const colors = ['#f00', '#fff', '#0f0', '#00f', '#ff0', '#0ff']
@@ -26,8 +81,8 @@ const colors = ['#f00', '#fff', '#0f0', '#00f', '#ff0', '#0ff']
  * 随机创建一个方块组合
  * @param centerPoint 中心点坐标
  */
-export function createTetris(centerPoint: Coordinate) {
+export function createTetris(centerPoint: Coordinate): SquareGroup {
     const i = getRamdom(0, shapes.length),
         j = getRamdom(0, colors.length);
-    return new SquareGroup(shapes[i], centerPoint, colors[j])
+    return new shapes[i](centerPoint, colors[j])
 }

@@ -54,6 +54,15 @@ export class TetrisRule {
         else
             while (this.move(tetris, { x: tetris.centerPoint.x, y: tetris.centerPoint.y + 1 })) { }
     }
+
+    /** 方块旋转 */
+    static rotate(tetris: SquareGroup): boolean {
+        const newShape = tetris.getRotateShape();
+        if (this.canMove(newShape, tetris.centerPoint)) {
+            tetris.rotate();
+            return true;
+        } else return false;
+    }
 }
 
 /** 类型保护函数 */

@@ -14,7 +14,7 @@ export class TetrisRule {
             y: item.y + targetPoint.y
         }))
         // 边界判断 some是否有元素满足条件
-        const result = targetPoints.some(item => item.x < 0 || item.x > GameConfig.panelSize.width - 1 || item.y < 0 || item.y > GameConfig.panelSize.height - 1);
+        const result = targetPoints.some(item => item.x < 0 || item.x > GameConfig.panelSize.x - 1 || item.y < 0 || item.y > GameConfig.panelSize.y - 1);
         return !result;
     }
 
@@ -33,6 +33,7 @@ export class TetrisRule {
         }
         else {
             const direction = directionOrTarget;
+            
             if (direction === MoveDirection.Left)
                 return this.move(tetris, { x: tetris.centerPoint.x - 1, y: tetris.centerPoint.y });
 

@@ -1,4 +1,5 @@
 import { SquareGroup } from "./SquareGroup";
+import { Game } from "./Game";
 
 /** 坐标 */
 export interface Coordinate {
@@ -18,6 +19,14 @@ export interface IGameViewer {
     showNextTetris(tetris: SquareGroup): void
     /** 切换方块 */
     switchTetris(tetris: SquareGroup): void
+    /** 完成界面初始化 */
+    init(game: Game): void
+    /** 显示分数 */
+    showScore(score: number): void
+    /** 游戏暂停时触发显示的东西 */
+    onGamePause():void
+    onGameStart():void
+    onGameOver():void
 }
 
 /** 方块组合的形状 */
